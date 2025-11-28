@@ -6,8 +6,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/tarefas")
@@ -127,4 +130,30 @@ public class TarefaController {
         }
         return "redirect:/tarefas";
     }
+
+    @GetMapping("/calendario")
+    public String calendario(Model model, HttpSession session) {
+        if (session.getAttribute("usuarioLogado") == null) {
+            return "redirect:/login";
+        }
+
+        Map<LocalDate, List<Tarefa>> tarefasPorData = new HashMap<>();
+
+        for (Tarefa t : tarefas) {
+            LocalDate data = t.getData(); // LocalDate correto
+
+            tarefasPorData
+                    .computeIfAbsent(data, k -> new ArrayList<>())
+                    .add(t);
+        }
+
+        model.addAttribute("tarefasPorData", tarefasPorData);
+        return "calendario";
+    }
+
+    public List<Tarefa> getTarefasList() {
+        return tarefas;
+    }
+
+
 }

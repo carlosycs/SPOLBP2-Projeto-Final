@@ -8,8 +8,6 @@
     <title th:text="${tituloPagina}">Tarefas</title>
 </head>
 <body>
-<section id="sidebar">
-</section>
 
 <section id="sidebar">
     <a href="#" class="brand">
@@ -126,8 +124,8 @@
                         <td><i class='bx bxs-user'></i> <span th:text="${tarefa.nome}"></span></td>
                         <td th:text="${tarefa.data}"></td>
                         <td>
-                                    <span th:text="${tarefa.status}"
-                                          th:classappend="${tarefa.status=='Completed'} ? 'status completed' : 'status pending'"></span>
+                            <span th:text="${tarefa.status}"
+                                  th:classappend="${tarefa.status=='Completed'} ? 'status completed' : 'status pending'"></span>
                         </td>
                         <td>
                             <form th:action="@{/tarefas/delete/{id}(id=${stat.index})}" method="post">

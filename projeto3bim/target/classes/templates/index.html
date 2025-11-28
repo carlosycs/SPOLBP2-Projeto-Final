@@ -24,13 +24,13 @@
 					<span class="text">Lista de tarefas</span>
 				</a>
 			</li>
-			<li>
-				<a href="#">
-					<i class='bx bxs-calendar'></i>
-					<span class="text">Calendário</span>
-				</a>
-			</li>
-			<li>
+            <li>
+                <a th:href="@{/tarefas/calendario}">
+                    <i class='bx bxs-calendar'></i>
+                    <span class="text">Calendário</span>
+                </a>
+            </li>
+            <li>
 				<a href="#">
 					<i class='bx bxs-doughnut-chart' ></i>
 					<span class="text">Analises</span>
@@ -163,7 +163,7 @@
                             </button>
                         </form>
                         <form th:action="@{/tarefas/processing/{id}(id=${stat.index})}" method="post" style="display:inline;">
-                            <button type="submit" title="Marcar como Processando">
+                            <button type="submit" class="processing-btn">
                                 <i class='bx bxs-time'></i>
                             </button>
                         </form>
@@ -187,18 +187,25 @@
         </form>
 
         <ul class="tarefa-list">
-            <li th:each="tarefa, stat : ${tarefas}" th:class="${tarefa.status=='Completed'} ? 'completed' : 'not-completed'">
+            <li th:each="tarefa, stat : ${tarefas}"
+                th:class="'tarefa-item ' +
+                 (tarefa.status == 'Pending' ? 'pending' :
+                 (tarefa.status == 'Processing' ? 'processing' :
+                 (tarefa.status == 'Completed' ? 'completed' : '')))">
+
                 <form th:action="@{/tarefas/toggle/{id}(id=${stat.index})}" method="post" style="display:flex; align-items:center; gap:10px; width:100%;">
                     <input type="checkbox" onchange="this.form.submit()" th:checked="${tarefa.status=='Completed'}" class="check">
+
                     <p th:text="${tarefa.nome}"></p>
+
                     <span class="status-icon">
                         <i th:if="${tarefa.status=='Completed'}" class='bx bxs-check-circle'></i>
                         <i th:if="${tarefa.status!='Completed'}" class='bx bxs-x-circle'></i>
                     </span>
+
                     <form th:action="@{/tarefas/delete/{id}(id=${stat.index})}" method="post">
                         <button type="submit" class="delete-btn">
-							<i class='bx bxs-x-circle'></i>
-
+                            <i class='bx bxs-x-circle'></i>
                         </button>
                     </form>
                 </form>

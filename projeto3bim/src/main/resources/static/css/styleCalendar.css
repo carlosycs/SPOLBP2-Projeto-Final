@@ -1,0 +1,78 @@
+.calendario-container {
+            padding: 20px;
+            width: 100%;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 12px;
+            margin-top: 25px;
+        }
+
+        .dia {
+            padding: 12px;
+            border-radius: 12px;
+            background: #f7f7f7;
+            border: 1px solid #e5e5e5;
+            min-height: 100px;
+            transition: .2s;
+        }
+
+        .dia:hover {
+            background: #dce9ff;
+            border-color: #8ab6ff;
+            cursor: pointer;
+        }
+
+        .badge {
+            background: #4070f4;
+            color: white;
+            padding: 4px 6px;
+            border-radius: 8px;
+            font-size: 12px;
+            margin-top: 6px;
+            display: inline-block;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+.badge {
+    margin-top: 4px;
+    padding: 4px 6px;
+    border-radius: 6px;
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+}
+
+.dia {
+    background: var(--light);
+    padding: 12px;
+    border-radius: 12px;
+    min-height: 120px;
+    box-shadow: var(--shadow);
+    font-size: 14px;
+}
+
+.badge {
+    padding: 4px 6px;
+    border-radius: 6px;
+    margin-top: 4px;
+    color: white;
+    font-size: 12px;
+}
+
+.badge.pending { background: var(--orange); }
+.badge.processing { background: var(--yellow); color: black; }
+.badge.completed { background: var(--blue); }
+
