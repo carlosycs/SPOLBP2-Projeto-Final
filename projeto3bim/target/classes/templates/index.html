@@ -5,10 +5,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+	<link rel="stylesheet" th:href="@{/css/styleIndex.css}"> 
 
-	<link rel="stylesheet" href="css/styleIndex.css">
-
-	<title>Lista de Tarefas</title>
+	<title th:text="${tituloPagina} ?: 'Lista de Tarefas'">Lista de Tarefas</title>
 </head>
 <body>
 
@@ -19,31 +18,17 @@
 		</a>
 		<ul class="side-menu top">
 			<li class="active">
-				<a href="#">
+				<a th:href="@{/tarefas}">
 					<i class='bx bxs-dashboard' ></i>
 					<span class="text">Lista de tarefas</span>
 				</a>
 			</li>
-            <li>
-                <a th:href="@{/tarefas/calendario}">
-                    <i class='bx bxs-calendar'></i>
-                    <span class="text">Calendário</span>
-                </a>
-            </li>
-            <li>
-				<a href="#">
-					<i class='bx bxs-doughnut-chart' ></i>
-					<span class="text">Analises</span>
-				</a>
-			</li>
 			<li>
-				<a href="#">
-					<i class='bx bxs-message-dots' ></i>
-					<span class="text">Mensagem</span>
+				<a th:href="@{/calendario}"> <i class='bx bxs-calendar'></i>
+					<span class="text">Calendário</span>
 				</a>
 			</li>
-
-		</ul>
+			</ul>
 		<ul class="side-menu">
 			<li>
 				<a href="#">
@@ -52,8 +37,7 @@
 				</a>
 			</li>
 			<li>
-				<a href="#" class="logout">
-					<i class='bx bxs-log-out-circle' ></i>
+				<a th:href="@{/logout}" class="logout"> <i class='bx bxs-log-out-circle' ></i>
 					<span class="text">Logout</span>
 				</a>
 			</li>
@@ -61,37 +45,15 @@
 	</section>
 
 	<section id="content">
-		<nav>
-			<i class='bx bx-menu' ></i>
-			<a href="#" class="nav-link">Categorias</a>
-			<form action="#">
-				<div class="form-input">
-					<input type="search" placeholder="Search...">
-					<button type="submit" class="search-btn"><i class='bx bx-search' ></i></button>
-				</div>
-			</form>
-			<input type="checkbox" id="switch-mode" hidden>
-			<label for="switch-mode" class="switch-mode"></label>
-			<a href="#" class="notification">
-				<i class='bx bxs-bell' ></i>
-				<span class="num">8</span>
-			</a>
-			<a href="#" class="profile">
-				 <i class='bx bxs-user'></i>
-			</a>
-		</nav>
+		<nav>...</nav>
 		<main>
 			<div class="head-title">
 				<div class="left">
-					<h1>Lista de Tarefas</h1>
+					<h1 th:text="${tituloPagina} ?: 'Lista de Tarefas'">Lista de Tarefas</h1>
 					<ul class="breadcrumb">
-						<li>
-							<a href="#">Lista de Tarefas</a>
-						</li>
+						<li><a th:href="@{/tarefas}">Lista de Tarefas</a></li>
 						<li><i class='bx bx-chevron-right' ></i></li>
-						<li>
-							<a class="active" href="#">Home</a>
-						</li>
+						<li><a class="active" href="#">Home</a></li>
 					</ul>
 				</div>
 				<a href="#" class="btn-download">
@@ -99,123 +61,109 @@
 					<span class="text">Download PDF</span>
 				</a>
 			</div>
-
-            <ul class="box-info">
-                <li>
-                    <i class='bx bxs-calendar-check'></i>
-                    <span class="text">
-            <h3 th:text="${completas}">0</h3>
-            <p>
-                <a th:href="@{/tarefas/completed}" class="status-link">Tarefas realizadas</a>
-            </p>
-        </span>
-                </li>
-                <li>
-                    <i class='bx bxs-time'></i>
-                    <span class="text">
-            <h3 th:text="${processando}">0</h3>
-            <p>
-                <a th:href="@{/tarefas/processing}" class="status-link">Tarefas Processando</a>
-            </p>
-        </span>
-                </li>
-                <li>
-                    <i class='bx bxs-error'></i>
-                    <span class="text">
-            <h3 th:text="${pendentes}">0</h3>
-            <p>
-                <a th:href="@{/tarefas/pending}" class="status-link">Tarefas Pendentes</a>
-            </p>
-        </span>
-                </li>
-            </ul>
+			
+			<ul class="box-info">
+				<li>
+					<i class='bx bxs-calendar-check'></i>
+					<span class="text">
+						<h3 th:text="${completas} ?: 0">0</h3>
+						<p><a th:href="@{/tarefas/completed}" class="status-link">Tarefas realizadas</a></p>
+					</span>
+				</li>
+				<li>
+					<i class='bx bxs-time'></i>
+					<span class="text">
+						<h3 th:text="${processando} ?: 0">0</h3>
+						<p><a th:href="@{/tarefas/processing}" class="status-link">Tarefas Processando</a></p>
+					</span>
+				</li>
+				<li>
+					<i class='bx bxs-error'></i>
+					<span class="text">
+						<h3 th:text="${pendentes} ?: 0">0</h3>
+						<p><a th:href="@{/tarefas/pending}" class="status-link">Tarefas Pendentes</a></p>
+					</span>
+				</li>
+			</ul>
 
 
-            <div class="table-data">
-    <div class="order">
-        <div class="head">
-            <h3>Tarefas Recentes</h3>
-        </div>
-        <table>
-            <thead>
-                <tr>
-                    <th>User</th>
-                    <th>Data</th>
-                    <th>Status</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="tarefa, stat : ${tarefas}">
-                    <td>
-                        <i class='bx bxs-user'></i>
-                        <span th:text="${tarefa.nome}"></span>
-                    </td>
-                    <td th:text="${tarefa.data}"></td>
-                    <td>
-                        <span th:text="${tarefa.status}"
-                              th:classappend="${tarefa.status=='Completed'} ? 'status completed' : 'status pending'"></span>
-                    </td>
-                    <td>
-                        <form th:action="@{/tarefas/delete/{id}(id=${stat.index})}" method="post">
-                            <button type="submit" class="delete-btn">
-                                <i class='bx bxs-trash'></i>
-                            </button>
-                        </form>
-                        <form th:action="@{/tarefas/processing/{id}(id=${stat.index})}" method="post" style="display:inline;">
-                            <button type="submit" class="processing-btn">
-                                <i class='bx bxs-time'></i>
-                            </button>
-                        </form>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="tarefa">
-        <div class="head">
-            <h3>Tarefas</h3>
-            <label for="nova-tarefa" style="cursor:pointer;" onclick="document.getElementById('form-nova-tarefa').style.display='block'">
-                <i class='bx bx-plus'></i>
-            </label>
-        </div>
+			<div class="table-data">
+				<div class="order">
+					<div class="head">
+						<h3>Tarefas Recentes</h3>
+					</div>
+					<table>
+						<thead>
+							<tr>
+								<th>Tarefa</th>
+								<th>Data</th>
+								<th>Status</th>
+								<th>Ações</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="tarefa : ${tarefas}">
+								<td>
+									<i class='bx bxs-user'></i>
+									<span th:text="${tarefa.nome}"></span>
+								</td>
+								<td th:text="${tarefa.data}"></td>
+								<td>
+									<span th:text="${tarefa.status}"
+										th:classappend="${tarefa.status=='Completed'} ? 'status completed' : 'status pending'"></span>
+								</td>
+								<td>
+									<form th:action="@{/tarefas/delete/{id}(id=${tarefa.id})}" method="post" style="display:inline-block;">
+										<button type="submit" class="delete-btn">
+											<i class='bx bxs-trash'></i>
+										</button>
+									</form>
+									</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				
+				<div class="tarefa">
+					<div class="head">
+						<h3>Adicionar Tarefas</h3>
+						<label for="nova-tarefa" style="cursor:pointer;" onclick="document.getElementById('form-nova-tarefa').style.display='block'">
+							<i class='bx bx-plus'></i>
+						</label>
+					</div>
 
-        <form action="/tarefas/add" method="post" id="form-nova-tarefa" style="display:none; margin:10px 0;">
-            <input type="text" name="texto" placeholder="Nova tarefa..." required>
-            <input type="date" name="data" required>
-            <button type="submit">Adicionar</button>
-        </form>
+					<form th:action="@{/tarefas/add}" method="post" id="form-nova-tarefa" style="display:none; margin:10px 0;">
+						<input type="text" name="texto" placeholder="Nova tarefa..." required>
+						<input type="date" name="data" required>
+						<button type="submit">Adicionar</button>
+					</form>
 
-        <ul class="tarefa-list">
-            <li th:each="tarefa, stat : ${tarefas}"
-                th:class="'tarefa-item ' +
-                 (tarefa.status == 'Pending' ? 'pending' :
-                 (tarefa.status == 'Processing' ? 'processing' :
-                 (tarefa.status == 'Completed' ? 'completed' : '')))">
+					<ul class="tarefa-list">
+						<li th:each="tarefa : ${tarefas}"
+							th:class="${tarefa.status=='Completed'} ? 'completed' : 'not-completed'" 
+							style="display:flex; justify-content: space-between; align-items: center; width:100%; padding: 10px 0;">
+							
+							<form th:action="@{/tarefas/toggle/{id}(id=${tarefa.id})}" method="post" style="display:flex; align-items:center; gap:10px;">
+								<input type="checkbox" onchange="this.form.submit()" th:checked="${tarefa.status=='Completed'}" class="check">
+								<p th:text="${tarefa.nome}"></p>
+								<span class="status-icon">
+									<i th:if="${tarefa.status=='Completed'}" class='bx bxs-check-circle'></i>
+									<i th:if="${tarefa.status!='Completed'}" class='bx bxs-x-circle'></i>
+								</span>
+							</form>
+							
+							<form th:action="@{/tarefas/delete/{id}(id=${tarefa.id})}" method="post">
+								<button type="submit" class="delete-btn" style="background: none; border: none; cursor: pointer;">
+									<i class='bx bxs-x-circle' style="color: var(--dark-grey); font-size: 20px;"></i>
+								</button>
+							</form>
 
-                <form th:action="@{/tarefas/toggle/{id}(id=${stat.index})}" method="post" style="display:flex; align-items:center; gap:10px; width:100%;">
-                    <input type="checkbox" onchange="this.form.submit()" th:checked="${tarefa.status=='Completed'}" class="check">
-
-                    <p th:text="${tarefa.nome}"></p>
-
-                    <span class="status-icon">
-                        <i th:if="${tarefa.status=='Completed'}" class='bx bxs-check-circle'></i>
-                        <i th:if="${tarefa.status!='Completed'}" class='bx bxs-x-circle'></i>
-                    </span>
-
-                    <form th:action="@{/tarefas/delete/{id}(id=${stat.index})}" method="post">
-                        <button type="submit" class="delete-btn">
-                            <i class='bx bxs-x-circle'></i>
-                        </button>
-                    </form>
-                </form>
-            </li>
-        </ul>
-    </div>
-</div>
-
+						</li>
+					</ul>
+				</div>
+			</div>
 		</main>
 	</section>
-	<script src="js/script.js"></script>
+	<script th:src="@{/js/script.js}"></script> 
 </body>
 </html>

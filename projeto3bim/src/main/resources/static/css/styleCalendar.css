@@ -75,4 +75,3 @@
 .badge.pending { background: var(--orange); }
 .badge.processing { background: var(--yellow); color: black; }
 .badge.completed { background: var(--blue); }
-
