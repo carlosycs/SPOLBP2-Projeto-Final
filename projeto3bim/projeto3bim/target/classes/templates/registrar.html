@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Criar conta</title>
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    <section>
+        <form method="post" action="/registrar">
+          <h2 class="title">🔑 Registrar</h2>
+
+            <div class="input">
+                <input type="text" name="name" required>
+                <label>Nome</label>
+            </div>
+
+            <div class="input">
+                <input type="email" name="email" required>
+                <label>Email</label>
+            </div>
+
+            <div class="input">
+                <input type="password" name="password" required>
+                <label>Senha</label>
+            </div>
+
+            <button type="submit">Criar conta</button>
+            <div class="register">
+                <br>
+                <p>Já tem uma conta? <a href="/login">Login</a></p>
+            </div>
+        </form>
+    </section>
+  </body>
+</html>
