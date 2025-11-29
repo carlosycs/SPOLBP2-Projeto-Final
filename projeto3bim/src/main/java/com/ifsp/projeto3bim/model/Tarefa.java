@@ -15,16 +15,22 @@ public class Tarefa {
     private Long id;
 
     private String nome;
-    private String data; 
-    private String status; 
+    private String data;
+    private String status;
+    private String categoria;
 
     public Tarefa() {
     }
 
     public Tarefa(String nome, String data, String status) {
+        this(nome, data, status, "Geral");
+    }
+
+    public Tarefa(String nome, String data, String status, String categoria) {
         this.nome = nome;
         this.data = data;
         this.status = status;
+        this.categoria = categoria;
     }
 
     public void toggleStatus() {
@@ -33,7 +39,7 @@ public class Tarefa {
         } else if ("Pending".equalsIgnoreCase(this.status)) {
             this.status = "Completed";
         } else if ("Processing".equalsIgnoreCase(this.status)) {
-            this.status = "Completed"; 
+            this.status = "Completed";
         } else {
             this.status = "Pending";
         }
@@ -62,13 +68,12 @@ public class Tarefa {
     public void setData(String data) {
         this.data = data;
     }
-    
+
     public LocalDate getDataAsLocalDate() {
         try {
             return LocalDate.parse(this.data, DateTimeFormatter.ISO_DATE);
         } catch (Exception e) {
-          
-            return null; 
+            return null;
         }
     }
 
@@ -78,5 +83,13 @@ public class Tarefa {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
     }
 }

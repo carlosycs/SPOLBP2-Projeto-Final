@@ -1,169 +1,191 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
-	<link rel="stylesheet" th:href="@{/css/styleIndex.css}"> 
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" th:href="@{/css/styleIndex.css}">
 
-	<title th:text="${tituloPagina} ?: 'Lista de Tarefas'">Lista de Tarefas</title>
+    <title th:text="${tituloPagina} ?: 'Lista de Tarefas'">Lista de Tarefas</title>
 </head>
 <body>
 
-	<section id="sidebar">
-		<a href="#" class="brand">
-			<i class='bx bxs-smile'></i>
-			<span class="text">ListUp</span>
-		</a>
-		<ul class="side-menu top">
-			<li class="active">
-				<a th:href="@{/tarefas}">
-					<i class='bx bxs-dashboard' ></i>
-					<span class="text">Lista de tarefas</span>
-				</a>
-			</li>
-			<li>
-				<a th:href="@{/calendario}"> <i class='bx bxs-calendar'></i>
-					<span class="text">Calendário</span>
-				</a>
-			</li>
-			</ul>
-		<ul class="side-menu">
-			<li>
-				<a href="#">
-					<i class='bx bxs-cog' ></i>
-					<span class="text">Configurações</span>
-				</a>
-			</li>
-			<li>
-				<a th:href="@{/logout}" class="logout"> <i class='bx bxs-log-out-circle' ></i>
-					<span class="text">Logout</span>
-				</a>
-			</li>
-		</ul>
-	</section>
+<section id="sidebar">
+    <a href="#" class="brand">
+        <i class='bx bxs-smile'></i>
+        <span class="text">ListUp</span>
+    </a>
+    <ul class="side-menu top">
+        <li class="active">
+            <a th:href="@{/tarefas}">
+                <i class='bx bxs-dashboard' ></i>
+                <span class="text">Lista de tarefas</span>
+            </a>
+        </li>
+        <li>
+            <a th:href="@{/calendario}"> <i class='bx bxs-calendar'></i>
+                <span class="text">Calendário</span>
+            </a>
+        </li>
+    </ul>
+    <ul class="side-menu">
+        <li>
+            <a href="#">
+                <i class='bx bxs-cog' ></i>
+                <span class="text">Configurações</span>
+            </a>
+        </li>
+        <li>
+            <a th:href="@{/logout}" class="logout"> <i class='bx bxs-log-out-circle' ></i>
+                <span class="text">Logout</span>
+            </a>
+        </li>
+    </ul>
+</section>
 
-	<section id="content">
-		<nav>...</nav>
-		<main>
-			<div class="head-title">
-				<div class="left">
-					<h1 th:text="${tituloPagina} ?: 'Lista de Tarefas'">Lista de Tarefas</h1>
-					<ul class="breadcrumb">
-						<li><a th:href="@{/tarefas}">Lista de Tarefas</a></li>
-						<li><i class='bx bx-chevron-right' ></i></li>
-						<li><a class="active" href="#">Home</a></li>
-					</ul>
-				</div>
-				<a href="#" class="btn-download">
-					<i class='bx bxs-cloud-download' ></i>
-					<span class="text">Download PDF</span>
-				</a>
-			</div>
-			
-			<ul class="box-info">
-				<li>
-					<i class='bx bxs-calendar-check'></i>
-					<span class="text">
+<section id="content">
+    <nav>...</nav>
+    <main>
+        <div class="head-title">
+            <div class="left">
+                <h1 th:text="${tituloPagina} ?: 'Lista de Tarefas'">Lista de Tarefas</h1>
+                <ul class="breadcrumb">
+                    <li><a th:href="@{/tarefas}">Lista de Tarefas</a></li>
+                    <li><i class='bx bx-chevron-right' ></i></li>
+                    <li><a class="active" href="#">Home</a></li>
+                </ul>
+            </div>
+            <a href="#" class="btn-download">
+                <i class='bx bxs-cloud-download' ></i>
+                <span class="text">Download PDF</span>
+            </a>
+        </div>
+
+        <ul class="box-info">
+            <li>
+                <i class='bx bxs-calendar-check'></i>
+                <span class="text">
 						<h3 th:text="${completas} ?: 0">0</h3>
 						<p><a th:href="@{/tarefas/completed}" class="status-link">Tarefas realizadas</a></p>
 					</span>
-				</li>
-				<li>
-					<i class='bx bxs-time'></i>
-					<span class="text">
+            </li>
+            <li>
+                <i class='bx bxs-time'></i>
+                <span class="text">
 						<h3 th:text="${processando} ?: 0">0</h3>
 						<p><a th:href="@{/tarefas/processing}" class="status-link">Tarefas Processando</a></p>
 					</span>
-				</li>
-				<li>
-					<i class='bx bxs-error'></i>
-					<span class="text">
+            </li>
+            <li>
+                <i class='bx bxs-error'></i>
+                <span class="text">
 						<h3 th:text="${pendentes} ?: 0">0</h3>
 						<p><a th:href="@{/tarefas/pending}" class="status-link">Tarefas Pendentes</a></p>
 					</span>
-				</li>
-			</ul>
+            </li>
+        </ul>
 
 
-			<div class="table-data">
-				<div class="order">
-					<div class="head">
-						<h3>Tarefas Recentes</h3>
-					</div>
-					<table>
-						<thead>
-							<tr>
-								<th>Tarefa</th>
-								<th>Data</th>
-								<th>Status</th>
-								<th>Ações</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr th:each="tarefa : ${tarefas}">
-								<td>
-									<i class='bx bxs-user'></i>
-									<span th:text="${tarefa.nome}"></span>
-								</td>
-								<td th:text="${tarefa.data}"></td>
-								<td>
+        <div class="table-data">
+            <div class="order">
+                <div class="head">
+                    <h3>Tarefas - Adicionadas recentemente</h3>
+                </div>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Tarefa</th>
+                        <th>Data</th>
+                        <th>Categoria</th>
+                        <th>Status</th>
+                        <th>Ações</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="tarefa : ${tarefas}">
+                        <td>
+                            <i class='bx bxs-user'></i>
+                            <span th:text="${tarefa.nome}"></span>
+                        </td>
+                        <td th:text="${tarefa.data}"></td>
+                        <td>
+                            <span class="categoria-badge" th:text="${tarefa.categoria}"></span>
+                        </td>
+                        <td>
 									<span th:text="${tarefa.status}"
-										th:classappend="${tarefa.status=='Completed'} ? 'status completed' : 'status pending'"></span>
-								</td>
-								<td>
-									<form th:action="@{/tarefas/delete/{id}(id=${tarefa.id})}" method="post" style="display:inline-block;">
-										<button type="submit" class="delete-btn">
-											<i class='bx bxs-trash'></i>
-										</button>
-									</form>
-									</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-				
-				<div class="tarefa">
-					<div class="head">
-						<h3>Adicionar Tarefas</h3>
-						<label for="nova-tarefa" style="cursor:pointer;" onclick="document.getElementById('form-nova-tarefa').style.display='block'">
-							<i class='bx bx-plus'></i>
-						</label>
-					</div>
+                                          th:classappend="${tarefa.status=='Completed'} ? 'status completed' : 'status pending'"></span>
+                        </td>
+                        <td>
+                            <form th:action="@{/tarefas/delete/{id}(id=${tarefa.id})}" method="post" style="display:inline-block;">
+                                <button type="submit" class="delete-btn">
+                                    <i class='bx bxs-trash'></i>
+                                </button>
+                            </form>
+                            <!-- BOTÃO DE EDIÇÃO ADICIONADO AQUI -->
+                            <a th:href="@{/tarefas/edit/{id}(id=${tarefa.id})}" class="edit-btn" style="margin-left: 10px;">
+                                <i class='bx bxs-edit' style="color: var(--blue); font-size: 20px;"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
 
-					<form th:action="@{/tarefas/add}" method="post" id="form-nova-tarefa" style="display:none; margin:10px 0;">
-						<input type="text" name="texto" placeholder="Nova tarefa..." required>
-						<input type="date" name="data" required>
-						<button type="submit">Adicionar</button>
-					</form>
+            <div class="tarefa">
+                <div class="head">
+                    <h3>Lista de Tarefas</h3>
+                    <label for="nova-tarefa" style="cursor:pointer;" onclick="document.getElementById('form-nova-tarefa').style.display='block'">
+                        <i class='bx bx-plus'></i>
+                    </label>
+                </div>
 
-					<ul class="tarefa-list">
-						<li th:each="tarefa : ${tarefas}"
-							th:class="${tarefa.status=='Completed'} ? 'completed' : 'not-completed'" 
-							style="display:flex; justify-content: space-between; align-items: center; width:100%; padding: 10px 0;">
-							
-							<form th:action="@{/tarefas/toggle/{id}(id=${tarefa.id})}" method="post" style="display:flex; align-items:center; gap:10px;">
-								<input type="checkbox" onchange="this.form.submit()" th:checked="${tarefa.status=='Completed'}" class="check">
-								<p th:text="${tarefa.nome}"></p>
-								<span class="status-icon">
+                <form th:action="@{/tarefas/add}" method="post" id="form-nova-tarefa" style="display:none; margin:10px 0; display: flex; flex-direction: column; gap: 10px;">
+                    <input type="text" name="texto" placeholder="Nova tarefa..." required style="padding: 8px; border-radius: 6px; border: 1px solid var(--grey);">
+                    <input type="date" name="data" required style="padding: 8px; border-radius: 6px; border: 1px solid var(--grey);">
+                    <select name="categoria" style="padding: 8px; border-radius: 6px; border: 1px solid var(--grey);">
+                        <option value="Geral">Geral</option>
+                        <option value="Trabalho">Trabalho</option>
+                        <option value="Estudos">Estudos</option>
+                        <option value="Pessoal">Pessoal</option>
+                        <option value="Saúde">Saúde</option>
+                        <option value="Outros">Outros</option>
+                    </select>
+                    <button type="submit" style="background: var(--blue); color: white; padding: 10px; border: none; border-radius: 6px; cursor: pointer;">Adicionar</button>
+                </form>
+
+                <ul class="tarefa-list">
+                    <li th:each="tarefa : ${tarefas}"
+                        th:class="${tarefa.status=='Completed'} ? 'completed' : 'not-completed'"
+                        style="display:flex; justify-content: space-between; align-items: center; width:100%; padding: 10px 0;">
+
+                        <form th:action="@{/tarefas/toggle/{id}(id=${tarefa.id})}" method="post" style="display:flex; align-items:center; gap:10px;">
+                            <input type="checkbox" onchange="this.form.submit()" th:checked="${tarefa.status=='Completed'}" class="check">
+                            <p th:text="${tarefa.nome}"></p>
+                            <span class="status-icon">
 									<i th:if="${tarefa.status=='Completed'}" class='bx bxs-check-circle'></i>
 									<i th:if="${tarefa.status!='Completed'}" class='bx bxs-x-circle'></i>
 								</span>
-							</form>
-							
-							<form th:action="@{/tarefas/delete/{id}(id=${tarefa.id})}" method="post">
-								<button type="submit" class="delete-btn" style="background: none; border: none; cursor: pointer;">
-									<i class='bx bxs-x-circle' style="color: var(--dark-grey); font-size: 20px;"></i>
-								</button>
-							</form>
+                        </form>
 
-						</li>
-					</ul>
-				</div>
-			</div>
-		</main>
-	</section>
-	<script th:src="@{/js/script.js}"></script> 
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <span class="categoria-badge" th:text="${tarefa.categoria}"></span>
+                            <form th:action="@{/tarefas/delete/{id}(id=${tarefa.id})}" method="post" style="display:inline-block;">
+                                <button type="submit" class="delete-btn">
+                                    <i class='bx bxs-trash'></i>
+                                </button>
+                            </form>
+                            <!-- BOTÃO DE EDIÇÃO ADICIONADO AQUI -->
+                            <a th:href="@{/tarefas/edit/{id}(id=${tarefa.id})}" class="edit-btn">
+                                <i class='bx bxs-edit' style="color: var(--blue); font-size: 20px;"></i>
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </main>
+</section>
+<script th:src="@{/js/script.js}"></script>
 </body>
 </html>

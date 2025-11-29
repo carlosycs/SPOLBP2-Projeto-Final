@@ -13,12 +13,11 @@ import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/tarefas")
-public class TarefaStatusController { // Renomeado para evitar conflito ou use o mesmo Controller principal
+public class TarefaStatusController {
 
     @Autowired 
     private TarefaRepository tarefaRepository;
 
-    // Método para exibir tarefas por Status
     @GetMapping("/{status}")
     public String listarPorStatus(@PathVariable String status, Model model, HttpSession session) {
         if (session.getAttribute("usuarioLogado") == null) {
@@ -26,13 +25,11 @@ public class TarefaStatusController { // Renomeado para evitar conflito ou use o
         }
 
         List<Tarefa> todasAsTarefas = (List<Tarefa>) tarefaRepository.findAll();
-        
-        // 1. Logica de filtro
+
         List<Tarefa> tarefasFiltradas = todasAsTarefas.stream()
                 .filter(t -> status.equalsIgnoreCase(t.getStatus()))
                 .collect(Collectors.toList());
 
-        // 2. Define o título da página
         String titulo;
         if ("completed".equalsIgnoreCase(status)) {
             titulo = "Tarefas Concluídas";
@@ -41,13 +38,12 @@ public class TarefaStatusController { // Renomeado para evitar conflito ou use o
         } else if ("processing".equalsIgnoreCase(status)) {
             titulo = "Tarefas Processando";
         } else {
-            return "redirect:/tarefas"; // Redireciona para o dashboard se o status for inválido/desconhecido
+            return "redirect:/tarefas";
         }
 
         model.addAttribute("tarefas", tarefasFiltradas);
         model.addAttribute("tituloPagina", titulo);
-        
-        // 3. Retorna o novo template
-        return "tarefas-status"; // Nome do novo arquivo HTML
+
+        return "tarefas-status";
     }
 }

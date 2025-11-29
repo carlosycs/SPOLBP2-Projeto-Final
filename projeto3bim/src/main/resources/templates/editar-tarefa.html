@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" th:href="@{/css/styleIndex.css}">
+    <title>Editar Tarefa</title>
+</head>
+<body>
+
+<section id="sidebar">
+    <a th:href="@{/tarefas}" class="brand">
+        <i class='bx bxs-smile'></i>
+        <span class="text">ListUp</span>
+    </a>
+    <ul class="side-menu top">
+        <li>
+            <a th:href="@{/tarefas}">
+                <i class='bx bxs-dashboard'></i>
+                <span class="text">Lista de tarefas</span>
+            </a>
+        </li>
+        <li>
+            <a th:href="@{/calendario}">
+                <i class='bx bxs-calendar'></i>
+                <span class="text">Calendário</span>
+            </a>
+        </li>
+    </ul>
+    <ul class="side-menu">
+        <li>
+            <a th:href="@{/logout}" class="logout">
+                <i class='bx bxs-log-out-circle'></i>
+                <span class="text">Logout</span>
+            </a>
+        </li>
+    </ul>
+</section>
+
+<section id="content">
+    <main>
+        <div class="head-title">
+            <div class="left">
+                <h1>Editar Tarefa</h1>
+                <ul class="breadcrumb">
+                    <li><a th:href="@{/tarefas}">Dashboard</a></li>
+                    <li><i class='bx bx-chevron-right'></i></li>
+                    <li><a class="active">Editar Tarefa</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="table-data">
+            <div class="order">
+                <div class="head">
+                    <h3>Editar Tarefa</h3>
+                </div>
+
+                <form th:action="@{/tarefas/update/{id}(id=${tarefa.id})}" method="post" style="padding: 20px;">
+                    <div style="margin-bottom: 20px;">
+                        <label style="display: block; margin-bottom: 8px; font-weight: 600;">Tarefa:</label>
+                        <input type="text" name="texto" th:value="${tarefa.nome}"
+                               style="width: 100%; padding: 12px; border: 1px solid var(--grey); border-radius: 8px;" required>
+                    </div>
+
+                    <div style="margin-bottom: 20px;">
+                        <label style="display: block; margin-bottom: 8px; font-weight: 600;">Data:</label>
+                        <input type="date" name="data" th:value="${tarefa.data}"
+                               style="width: 100%; padding: 12px; border: 1px solid var(--grey); border-radius: 8px;" required>
+                    </div>
+
+                    <div style="margin-bottom: 20px;">
+                        <label style="display: block; margin-bottom: 8px; font-weight: 600;">Categoria:</label>
+                        <select name="categoria" style="width: 100%; padding: 12px; border: 1px solid var(--grey); border-radius: 8px;">
+                            <option value="Geral" th:selected="${tarefa.categoria == 'Geral'}">Geral</option>
+                            <option value="Trabalho" th:selected="${tarefa.categoria == 'Trabalho'}">Trabalho</option>
+                            <option value="Estudos" th:selected="${tarefa.categoria == 'Estudos'}">Estudos</option>
+                            <option value="Pessoal" th:selected="${tarefa.categoria == 'Pessoal'}">Pessoal</option>
+                            <option value="Saúde" th:selected="${tarefa.categoria == 'Saúde'}">Saúde</option>
+                            <option value="Outros" th:selected="${tarefa.categoria == 'Outros'}">Outros</option>
+                        </select>
+                    </div>
+
+                    <div style="margin-bottom: 20px;">
+                        <label style="display: block; margin-bottom: 8px; font-weight: 600;">Status:</label>
+                        <select name="status" style="width: 100%; padding: 12px; border: 1px solid var(--grey); border-radius: 8px;">
+                            <option value="Pending" th:selected="${tarefa.status == 'Pending'}">Pendente</option>
+                            <option value="Processing" th:selected="${tarefa.status == 'Processing'}">Processando</option>
+                            <option value="Completed" th:selected="${tarefa.status == 'Completed'}">Concluída</option>
+                        </select>
+                    </div>
+
+                    <div style="display: flex; gap: 10px;">
+                        <button type="submit" style="background: var(--blue); color: white; padding: 12px 24px; border: none; border-radius: 8px; cursor: pointer;">
+                            Atualizar Tarefa
+                        </button>
+                        <a th:href="@{/tarefas}" style="background: var(--dark-grey); color: white; padding: 12px 24px; border: none; border-radius: 8px; cursor: pointer; text-decoration: none;">
+                            Cancelar
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+</section>
+
+<script th:src="@{/js/script.js}"></script>
+</body>
+</html>

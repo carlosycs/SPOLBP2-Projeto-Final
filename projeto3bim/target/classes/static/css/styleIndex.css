@@ -661,3 +661,60 @@ body {
 		min-width: 420px;
 	}
 }
+
+/* ===== ESTILOS PARA CATEGORIAS ===== */
+.categoria-badge {
+    padding: 4px 12px;
+    border-radius: 12px;
+    color: white;
+    font-size: 12px;
+    font-weight: 600;
+    display: inline-block;
+}
+
+/* Cores para cada categoria */
+.categoria-badge {
+    background: var(--dark-grey);
+}
+
+.categoria-badge:contains("Trabalho"),
+[th\\:text="Trabalho"] {
+    background: var(--blue);
+}
+
+.categoria-badge:contains("Estudos"),
+[th\\:text="Estudos"] {
+    background: var(--yellow);
+    color: var(--dark);
+}
+
+.categoria-badge:contains("Pessoal"),
+[th\\:text="Pessoal"] {
+    background: var(--orange);
+}
+
+.categoria-badge:contains("Saúde"),
+[th\\:text="Saúde"] {
+    background: #4CAF50;
+}
+
+.categoria-badge:contains("Geral"),
+[th\\:text="Geral"] {
+    background: #9C27B0;
+}
+
+.categoria-badge:contains("Outros"),
+[th\\:text="Outros"] {
+    background: #607D8B;
+}
+
+/* Melhorias para os formulários */
+#form-nova-tarefa input,
+#form-nova-tarefa select {
+    margin-bottom: 8px;
+}
+
+/* Ajustes para a tabela */
+.table-data .order table td {
+    vertical-align: middle;
+}
