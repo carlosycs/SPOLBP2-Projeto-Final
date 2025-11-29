@@ -434,13 +434,6 @@ body {
     border-left: 6px solid var(--blue);
 }
 
-/* Status processando */
-.tarefa-list li.processing {
-    border-left: 6px solid var(--yellow);
-}
-
-
-
 /* Checkbox personalizado */
 .check {
     width: 20px;
@@ -484,7 +477,6 @@ body {
 
 .status.completed { background: var(--blue); color: #fff; padding: 4px 12px; border-radius: 12px;}
 .status.pending { background: var(--orange); color: #fff; padding: 4px 12px; border-radius: 12px;}
-.status.processing { background: var(--yellow); color: #fff; padding: 4px 12px; border-radius: 12px;}
 
 #content main .table-data {
 	display: flex;
@@ -668,15 +660,4 @@ body {
 	#content main .table-data .tarefa .tarefa-list {
 		min-width: 420px;
 	}
-}
-
-.status-link {
-    text-decoration: none;
-    color: inherit;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.status-link:hover {
-    text-decoration: underline;
 }
