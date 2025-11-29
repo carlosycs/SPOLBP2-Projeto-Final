@@ -22,11 +22,7 @@ public class TarefaController {
     @Autowired 
     private TarefaRepository tarefaRepository;
 
-    // --- Método Auxiliar para Contadores ---
-    
-    /**
-     * Calcula e adiciona ao Model os contadores de Completed, Pending e Processing.
-     */
+   
     private void adicionarContadoresAoModelo(Model model) {
         List<Tarefa> todasAsTarefas = (List<Tarefa>) tarefaRepository.findAll();
         
@@ -47,7 +43,6 @@ public class TarefaController {
         model.addAttribute("processando", processando);
     }
 
-    // --- Rotas Principais (Dashboard / Home) ---
 
     @GetMapping
     public String listar(Model model, HttpSession session) {
@@ -61,10 +56,10 @@ public class TarefaController {
         model.addAttribute("tarefas", todasAsTarefas); 
         model.addAttribute("tituloPagina", "Lista de Tarefas"); 
         
-        return "index"; // View do Dashboard principal
+        return "index"; 
     }
 
-    // --- Rotas de Ação (Persistência) ---
+  
     
     @PostMapping("/add")
     public String adicionar(@RequestParam("texto") String texto, 
@@ -98,9 +93,7 @@ public class TarefaController {
         return "redirect:/tarefas";
     }
     
-    /**
-     * Rota para alterar o status de uma tarefa para 'Processing'.
-     */
+  
     @PostMapping("/processing/{id}")
     public String marcarProcessando(@PathVariable Long id, HttpSession session) {
         if (session.getAttribute("usuarioLogado") == null) {
@@ -179,4 +172,5 @@ public class TarefaController {
         model.addAttribute("tituloPagina", "Calendário de Tarefas"); 
         return "calendario";
     }
+
 }
