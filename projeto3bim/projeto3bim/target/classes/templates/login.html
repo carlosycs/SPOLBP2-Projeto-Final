@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    <section>
+        <form method="post" action="/login">
+          <h2 class="title">🔑 Login</h2>
+          <br>
+            <div class="input">
+                <input type="email" name="email" required>
+                <label>Email</label>
+            </div>
+
+            <div class="input">
+                <input type="password" name="password" required>
+                <label>Senha</label>
+            </div>
+
+            <button type="submit">Login</button>
+            <div class="register">
+                <br>
+                <p>Não tem uma conta? <a href="/registrar">Registre-se</a></p>
+            </div>
+        </form>
+    </section>
+  </body>
+</html>
