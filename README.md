@@ -22,3 +22,8 @@ Participantes:
 - Marina Trindade: Lógica de Login e Autenticação Segura
 - Carlos Santos: Criação de tags para tarefas; Filtragem por tags
 - Isabel Almeida: Status das tarefas; Páginas de status das tarefas
+
+# LINK VÍDEO - ENTREGA 4° BIMESTRE
+Link do vídeo dos integrantes demonstrando a aplicação em funcionamento, com comentários e pontuais explicações sobre o código.
+
+https://youtu.be/X_MqjLNAlf0?si=676rIhE67J2JrsqJ 
